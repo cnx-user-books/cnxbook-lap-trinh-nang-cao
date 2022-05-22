@@ -1,0 +1,223 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Bản ghi</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>c58f335f-e029-43ef-975b-48523242b800</md:uuid>
+</metadata>
+  <content>
+    <para id="id12863648">DỮ LIỆU KIỂU BẢN GHI</para>
+    <list list-type="bulleted" id="id12863653">
+      <item>Khái niệm cơ bản:</item>
+    </list>
+    <para id="id12863660">Bản ghi(Record) là một cấu trúc bao gồm một số (cố định hoặc thay đổi) các phần tử có kiểu khác nhau nhưng có liên quan nhau. Các phần tử này gọi là các trường (Field), vd: bảng điểm của lớp học bao gồm các trường Hoten, Ngaysinh, Toan,Ly, Hoa.. Dữ liệu điền vào các trường hình thành nên một bản ghi (Record). Có thể có những trường trong một bản ghi lại là một bản ghi, ví dụ trường Ngaysinh ở trên có thể là một bản ghi của 3 trường là Ngay, Thang, Nam. Bản ghi không phải là kiểu dữ liệu đã có sẵn trong Pascal mà do người sử dụng tự định nghĩa do đó chúng phải được khai báo ở phần TYPE.</para>
+    <para id="id12863693">Bản ghi bao gồm 2 loại:</para>
+    <list list-type="bulleted" id="id12863698">
+      <item>Bản ghi có cấu trúc không đổi</item>
+      <item>Bản ghi có cấu trúc thay đổi</item>
+    </list>
+    <para id="id12863715">Điểm mạnh của bản ghi là cho phép xây dựng những cấu trúc dữ liệu đa dạng phục vụ công việc quản lý, tuy vậy muốn lưu trữ dữ liệu để sử dụng nhiều lần thì phải kết hợp kiểu bản ghi với kiểu Tệp.</para>
+    <list list-type="bulleted" id="id12863727">
+      <item>Khai báo:</item>
+    </list>
+    <para id="id12863739">TYPE    TênKiểu = RECORD</para>
+    <para id="id12863744">                   Field1 : Kiểu1;</para>
+    <para id="id12863750">                   Field2 : Kiểu2;</para>
+    <para id="id12863755">                   ...</para>
+    <para id="id12863762">                   FieldN: KiểuN;</para>
+    <para id="id12863767">              END;</para>
+    <para id="id12863771">VAR      Biến : TênKiểu;</para>
+    <para id="id12863777">Ví dụ 2.1:</para>
+    <para id="id12863784">TYPE    Bangdiem = RECORD</para>
+    <para id="id12863793">               Hoten : String[25];</para>
+    <para id="id12863802">  Gioitinh:Char;</para>
+    <para id="id12863808">  Lop:String[5];</para>
+    <para id="id12863815">  Diachi: String[30];</para>
+    <para id="id12863821">  Toan,Ly,Hoa:Real;</para>
+    <para id="id12863827">              END;</para>
+    <para id="id12863834">Tổng độ dài của Record là: 26+1+6+31+18=82 Bytes.</para>
+    <para id="id12863841">Có thể dùng hàm sizeof(tên kiểu) để xác định độ dài một kiểu dữ liệu, ví dụ:</para>
+    <para id="id12863848">Write(sizeof(bangdiem)) sẽ nhận được số 82.</para>
+    <para id="id12863854">Ví dụ 2.2 </para>
+    <para id="id12863859">Xây dựng kiểu dữ liệu quản lý hồ sơ công chức:</para>
+    <para id="id12863866">Type</para>
+    <para id="id12863870">Diadanh=Record</para>
+    <para id="id12863874">  Tinh,Huyen,Xa:String[15];</para>
+    <para id="id12863883">  End;</para>
+    <para id="id12863890">Donvi=Record</para>
+    <para id="id12863894">  Truong:String[30];</para>
+    <para id="id12863900">  Khoa,Bomon:String[20];</para>
+    <para id="id12863907">  End;</para>
+    <para id="id12863914">Ngay=Record</para>
+    <para id="id12863918">  Ng:1..31;</para>
+    <para id="id12863925">  Th:1..12;</para>
+    <para id="id12863931">  Nam:Integer;</para>
+    <para id="id12863937">  End;</para>
+    <para id="id12863944">Lylich=Record</para>
+    <para id="id12863948">  Mhs:Word;</para>
+    <para id="id12863955">  Hoten:String[25];</para>
+    <para id="id12863961">  Ngaysinh:Ngay;</para>
+    <para id="id12863967">  Quequan:Diadanh;</para>
+    <para id="id12863974">  Coquan:Donvi;</para>
+    <para id="id12863980">  End;</para>
+    <list list-type="bulleted" id="id12863987">
+      <item>Truy nhập các trường của bản ghi:</item>
+    </list>
+    <para id="id12863997">Giả sử cần quản lý danh sách cán bộ của một trường đại học, chúng ta phải khai báo một biến chứa danh sách:</para>
+    <para id="id12864006">Var DS:Lylich;</para>
+    <para id="id12864013">Để truy nhập các trường cần viết:</para>
+    <para id="id12864018">&lt;tên biến&gt;.&lt;tên trường mẹ&gt;.&lt;tên trường con&gt;…</para>
+    <para id="id12864024">Ví dụ để nhập dữ liệu cho trường Hoten ta viết các lệnh:</para>
+    <para id="id12864031">Readln(DS.hoten);</para>
+    <para id="id12864036">Để nhập ngày tháng năm sinh:</para>
+    <para id="id12864040">Readln(Ds.Ngay.Ng);</para>
+    <para id="id12864044">Readln(Ds.Ngay.Thang);</para>
+    <para id="id12864049">Readln(Ds.Ngay.Nam);</para>
+    <list list-type="bulleted" id="id12864054">
+      <item>Lệnh With…Do</item>
+    </list>
+    <para id="id12864063">Các cú pháp của lệnh:</para>
+    <para id="id12864071">WITH &lt;Tên biến kiểu RECORD&gt; DO &lt;Các lệnh&gt;</para>
+    <para id="id12864076">Khi sử dụng lệnh WITH..DO chuỗi lệnh viết sau DO chỉ cần viết tên trường có liên quan mà không cần viết tên biến. </para>
+    <para id="id12864086">Ví dụ 2.3</para>
+    <para id="id12864090">Program Nhapdiem;</para>
+    <para id="id12864095">Uses CRT;</para>
+    <para id="id12864099">Type</para>
+    <para id="id12864104">BANGDIEM=RECORD</para>
+    <para id="id12864108"> Hoten:String[25];</para>
+    <para id="id12864114"> Gioitinh: (‘1’,’0’);</para>
+    <para id="id12864123"> Lop:String[5];</para>
+    <para id="id12864129"> Toan,Ly,Hoa:Real;</para>
+    <para id="id12864134"> End;</para>
+    <para id="id12864140">Var</para>
+    <para id="id12864144"> DS_LOP:Array[1..40] of BANGDIEM {ds lớp là mảng 40 phần tử}</para>
+    <para id="id12864151"> i,j: integer;</para>
+    <para id="id12864157"> tiep:Char;</para>
+    <para id="id12864166">BEGIN</para>
+    <para id="id12864170"> Clrscr;</para>
+    <para id="id12864175"> tiep:=’C’; i:=1;</para>
+    <para id="id12864184"> Repeat</para>
+    <para id="id12864190"> With DS_LOP[i] do</para>
+    <para id="id12864196">  Begin</para>
+    <para id="id12864204">  Write (‘Ho ten hs:’); Readln(Hoten);</para>
+    <para id="id12864212">  Write (‘Nam hay nữ: 1/0’); Readln(Gioitinh);</para>
+    <para id="id12864220">  Write (‘Lop:’); Readln(Lop);</para>
+    <para id="id12864227">  Write (‘Dia chi:’); Readln(Diachi);</para>
+    <para id="id12864238">  Write (‘Diem Toan:’); Readln(Toan); </para>
+    <para id="id12864250">  Write (‘Diem ly:’); Readln(Ly);</para>
+    <para id="id12864258">  Write (‘Diem Hoa:’); Readln(Hoa);</para>
+    <para id="id12864265"> End;</para>
+    <para id="id12864271"> i:=i+1;</para>
+    <para id="id12864279"> Write(‘Nhap tiep hay khong? C/K’); Readln(tiep);</para>
+    <para id="id12864289"> Until upcase(tiep)=’K’;</para>
+    <para id="id12864299"> Clrscr;</para>
+    <para id="id12864304"> For j:=1 to i-1 do</para>
+    <para id="id12864310"> With DS_LOP[j] do</para>
+    <para id="id12864318"> Wrteln(Ho ten:15,’ ‘, Gioi tinh:2,’ ‘,Lop: 4,’ ‘,Dia chi:10,’ Toan:’, Toan:4:2,’ Ly:’, Ly:4:2, ’ Hoa:’, Hoa:4:2);</para>
+    <para id="id12864351"> Readln;</para>
+    <para id="id12864357">END.</para>
+    <para id="id12864361">Đối với các bản ghi lồng nhau thì lệnh with..do cũng phải lồng nhau.</para>
+    <list list-type="bulleted" id="id12864367">
+      <item>Bản ghi có cấu trúc thay đổi:</item>
+    </list>
+    <para id="id12864377">a. Xây dựng kiểu dữ liệu:</para>
+    <para id="id12864382">Bản ghi có cấu trúc cố định dùng để mô tả một đối tượng mà các thể hiện của nó có các thuộc tính như nhau. Trong thực tế nhiều khi ta gặp những đối tượng mà thuộc tính của chúng gồm hai loại: </para>
+    <list list-type="bulleted" id="id12864398">
+      <item>Thuộc tính chung cho mọi thể hiện </item>
+      <item>Thuộc tính riêng cho một số thể hiện đặc biệt</item>
+    </list>
+    <para id="id12864416">Ví dụ 2.4: Kiểu dữ liệu quản lý vé ngành đường sắt </para>
+    <para id="id12864433">Trên một tuyến đường sắt có nhiều đoàn tàu chạy trong ngày, có những chuyến tốc hành chỉ dừng lại ở một vài ga dọc đường, có những chuyến tàu thường dừng lại tất cả các ga lẻ. Với tàu tốc hành, hành khách chỉ được mang theo hành lý không quá 20 kg và sẽ có suất ăn trên tàu. Với tàu thường hành khách phải mua vé hàng hóa nếu có vận chuyển hàng hóa và không có suất ăn trên tàu.</para>
+    <para id="id12864450">Thuộc tính chung: tên đoàn tàu (TDT), tuyến đường (TD), giờ đi (GD), loại tàu (LT) ( ví dụ tốc hành –TH, tàu thường TT)</para>
+    <para id="id12864462">Thuộc tính riêng với tàu tốc hành: Số xuất ăn (SXA), số ga lẻ dừng dọc đường (SGD), còn tàu thường có thuộc tính riêng là cước hàng hóa (CHH). </para>
+    <para id="id12864472">Xây dựng các bản ghi dữ liệu:</para>
+    <para id="id12864482">Type QLDS=record</para>
+    <para id="id12864487"> Ten_doan_tau:string[3];</para>
+    <para id="id12864492"> Tuyen_duong:string[15];</para>
+    <para id="id12864498"> Gio_di:real;</para>
+    <para id="id12864504"> Case Loai_tau: (Toc_hanh,Tau_thuong ) of</para>
+    <para id="id12864509">  Toc_hanh:(So_xuat_an:Word; So_ga_do:Byte);</para>
+    <para id="id12864516">  Tau_thuong: (cuoc_hang_hoa:real);</para>
+    <para id="id12864522"> End;</para>
+    <para id="id12864528">Ví dụ 2.5: Kiểu dữ liệu quản lý điểm của sinh viên:</para>
+    <para id="id12864544">SV là kiểu dữ liệu bản ghi dùng để quản lý điểm của sinh viên. Các trường cố định của SV gồm MHS (mã hồ sơ), HOTEN (họ tên), NS (ngày sinh), GIOI (giới tính), Khoa (Sư phạm- SP, Kinh tế - KT, Cơ điện – CD). Các môn học tùy thuộc vào khoa mà sinh viên đang theo học, giả sử chúng ta quy định khoa sư phạm có các môn : Toán, Lý, Tin cơ bản, lập trình nâng cao; khoa Kinh tế có các môn : Kế toán máy, Marketing; khoa Cơ điện có các môn: Cơ học máy, Sức bền vật liệu. Tất cả sinh viên nếu là Nam thì học thêm môn Bơi lội, nếu là Nữ thì học thêm Thể dục nghệ thuật.</para>
+    <para id="id12864575">Mỗi bản ghi kiểu sinh viên có cấu trúc thuộc một trong các dạng sau: </para>
+    <para id="id12864582">* Sinh viên khoa sư phạm:</para>
+    <para id="id12864588">1/ Mhs, Hoten, Ns, Boi_loi, Toan, Ly, Tincoban, Lap_trinh_nang_cao</para>
+    <para id="id12864593">2/ Mhs, Hoten, Ns, The_duc, Toan, Ly, Tincoban, Lap_trinh_nang_cao</para>
+    <para id="id12864598">* Sinh viên khoa cơ điện:</para>
+    <para id="id12864604">3/ Mhs, Hoten, Ns, Boi_loi, Co_hoc_may, Suc_ben_vat_lieu</para>
+    <para id="id12864609">4/ Mhs, Hoten, Ns, The_duc, Co_hoc_may, Suc_ben_vat_lieu</para>
+    <para id="id12864614">* Sinh viên khoa Kinh tế:</para>
+    <para id="id12864619">5/ Mhs, Hoten, Ns, Boi_loi, Ke_toan_may, Marketing</para>
+    <para id="id12864624">6/ Mhs, Hoten, Ns, The_duc, Ke_toan_may, Marketing</para>
+    <para id="id12864629">Kiểu dữ liệu bản ghi SV được khai báo như sau:</para>
+    <para id="id12864636">SV=record</para>
+    <para id="id12864640"> Mhs: Byte;</para>
+    <para id="id12864645"> Hoten: String[20];</para>
+    <para id="id12864651"> NS:Record;</para>
+    <para id="id12864656">  Ngay:1..31; Thang:1..12; Nam:Word;</para>
+    <para id="id12864663"> End;</para>
+    <para id="id12864669"> Case monhoc:(pl1,pl2) of</para>
+    <para id="id12864678">  pl1: (case gioi:(Nam,Nu) of</para>
+    <para id="id12864688">   Nam:(Boi loi:real);</para>
+    <para id="id12864695">   Nu: (the_duc:real);</para>
+    <para id="id12864703">  pl2: (case KHOA:(SP,CD,KT) of</para>
+    <para id="id12864713">   SP: (Toan, Ly, Tincb, Ltnc:Real);</para>
+    <para id="id12864721">   CD: (Co_hoc_may, Suc_ben_vat_lieu: real);</para>
+    <para id="id12864729">   KT: (Ke_toan_may, Marketing:real));</para>
+    <para id="id12864740"> End;</para>
+    <para id="id12864746">Từ cách khai báo trên, ta rút ra một số nhận xét sau:</para>
+    <para id="id12864752">Nhận xét 1: Trong một kiểu record các trường cố định được khai báo trước, trường phân loại khai báo sau, như vậy truờng phân loại phải là trường khai báo cuối cùng. Các trường thay đổi khai báo bên trong trường phân loại.</para>
+    <para id="id12864766">Nhận xét 2: Mỗi kiểu dữ liệu record có cấu trúc thay đổi chỉ được phép có duy nhất một trường phân loại, nghĩa là không thể có hai toán tử case…of ngang hàng khi khai báo.</para>
+    <para id="id12864778">Nhận xét 3: Vì mỗi trường lại có thể là một bản ghi cho nên bên trong trường phân loại lại có thể chứa các trường phân loại khác, đây là trường hợp bản ghi thay đổi nhiều mức.</para>
+    <para id="id12864790"> b. Truy nhập:</para>
+    <para id="id12864796"> Việc truy nhập vào các trường cố định của bản ghi có cấu trúc thay đổi hoàn toàn giống như bản ghi thường. Còn việc truy nhập vào các trường thay đổi cần phải chú ý một số điểm sau:</para>
+    <list list-type="bulleted" id="id12864815">
+      <item>Không dùng phép gán hoặc nhập dữ liệu từ bàn phím cho các trường phân loại.</item>
+      <item>Lệnh With…do có tác dụng với tất cả các trường kể cả các trường thay đổi bên trong các trường phân loại.</item>
+      <item>Tên các trường phân loại không thể đưa ra màn hình như một tên trường bình.</item>
+    </list>
+    <para id="id12864846">Bài tập chương 2:</para>
+    <para id="id12864854"> 1. Viết lại chương trình ở ví dụ 2.5, đưa vào chương trình con Nhập và chương trình con hiện. Dữ liệu đưa ra có dạng như sau:</para>
+    <table id="id12864868" summary="">
+      <tgroup cols="7">
+        <colspec colnum="1" colname="c1"/>
+        <colspec colnum="2" colname="c2"/>
+        <colspec colnum="3" colname="c3"/>
+        <colspec colnum="4" colname="c4"/>
+        <colspec colnum="5" colname="c5"/>
+        <colspec colnum="6" colname="c6"/>
+        <colspec colnum="7" colname="c7"/>
+        <tbody>
+          <row>
+            <entry>Ma ho so</entry>
+            <entry>Ho va ten</entry>
+            <entry>Gioitinh </entry>
+            <entry>Khoa</entry>
+            <entry>So mon hoc</entry>
+            <entry>Tong diem</entry>
+            <entry>Trung bình</entry>
+          </row>
+          <row>
+            <entry>…</entry>
+            <entry/>
+            <entry/>
+            <entry/>
+            <entry/>
+            <entry/>
+            <entry/>
+          </row>
+          <row>
+            <entry/>
+            <entry/>
+            <entry/>
+            <entry/>
+            <entry/>
+            <entry/>
+            <entry/>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <para id="id12865055"/>
+    <para id="id12865060"/>
+  </content>
+</document>

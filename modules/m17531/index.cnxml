@@ -1,0 +1,329 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Con trỏ và cấu trúc động</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>a4b455d5-758d-47f2-8f4d-164c27a0e22f</md:uuid>
+</metadata>
+  <content>
+    <para id="id4998310">CON TRỎ VÀ CẤU TRÚC ĐỘNG</para>
+    <list list-type="enumerated" id="id11992764">
+      <item>Khái niệm:</item>
+    </list>
+    <para id="id3275324">Khi khai báo một biến, dù là biến đơn hay biến thuộc kiểu dữ liệu có cấu trúc, ta đã quy định độ lớn vùng nhớ dành cho biến:</para>
+    <para id="id3800630">VD: a: real; biến a cần 6 byte</para>
+    <para id="id9842830"> B: array[1..100] of integer; biến mảng b cần 200 byte</para>
+    <para id="id10499595">Việc khai báo như trên thường là phỏng đoán dung lượng cần thiết chứ không thật chính xác, gây nên lãng phí bộ nhớ. </para>
+    <para id="id11762188">Để tiết kiệm bộ nhớ, ngay khi chương trình đang làm việc, người lập trình có thể yêu cầu cấp phát bộ nhớ cho các biến, điều này gọi là cấp phát bộ nhớ động. Cấp phát bộ nhớ động được thực hiện thông qua biến con trỏ. Muốn có biến con trỏ ta phải định nghĩa kiểu con trỏ.</para>
+    <para id="id9868199">Kiểu dữ liệu con trỏ-biến con trỏ:</para>
+    <list list-type="bulleted" id="id10588560">
+      <item>Con trỏ có định kiểu:</item>
+    </list>
+    <para id="id11883928">Kiểu con trỏ là một kiểu dữ liệu đặc biệt dùng để biểu diễn các địa chỉ. Kiểu con trỏ được định nghĩa theo cú pháp:</para>
+    <para id="id3808304">Tên kiểu con trỏ=^Kiểu dữ liệu;</para>
+    <para id="id10262402">Ví dụ 4.1:</para>
+    <para id="id3782610">Chu=String[20];</para>
+    <para id="id7124935">CT1=^Byte;</para>
+    <para id="id3101898">CT2=^Chu;</para>
+    <para id="id11177836">CT3=^Nguoi;</para>
+    <para id="id11883554">Nguoi=record</para>
+    <para id="id10647030"> Hoten:String[20];</para>
+    <para id="id11531636"> Namsinh:1900..2100;</para>
+    <para id="id10638792"> End;</para>
+    <para id="id10607111">Chú ý: ta chỉ được phép đưa trực tiếp vào định nghĩa kiểu con trỏ các kiểu dữ liệu đơn giản sau: số nguyên, số thực, ký tự. Các kiểu dữ liệu có cấu trúc muốn đưa vào con trỏ thì phải thông qua một tên kiểu khai báo trong phần Type.</para>
+    <para id="id10615442">Cách định nghĩa 2 kiểu con trỏ Hoten và Ds sau là sai:</para>
+    <para id="id11696552">Type </para>
+    <para id="id10442826">Hoten=^String[20];</para>
+    <para id="id10970787">Ds=Array[1..10] of Byte;</para>
+    <para id="id11685425">Muốn sử dụng kiểu chuỗi và mảng cho kiểu con trỏ chúng ta phải định nghĩa như sau:</para>
+    <para id="id3882200">Type</para>
+    <para id="id9236603">S1=String[20];</para>
+    <para id="id11096249">Hoten=^S1;</para>
+    <para id="id11534222">a=array[1..10] of Byte;</para>
+    <para id="id10675530">Ds=^a;</para>
+    <list list-type="bulleted" id="id9212956">
+      <item>Biến con trỏ:</item>
+    </list>
+    <para id="id4455286">Biến con trỏ có thể khai báo thông qua kiểu con trỏ hoặc khai báo trực tiếp.</para>
+    <para id="id8766281">Ví dụ 4.2:</para>
+    <para id="id7906452">Var</para>
+    <para id="id9082614">So:^integer;</para>
+    <para id="id3301497">Sinhvien:CT3;</para>
+    <para id="id8751375">Hoten:CT2;</para>
+    <para id="id10545294">Thutu, Mahoso:^Word;</para>
+    <para id="id7161247">Biến con trỏ không dùng để lưu trữ các giá trị của biến mà lưu trữ địa chỉ của biến. Dù kích thước vùng dữ liệu mà các biến con trỏ trỏ tới khác nhau nhưng kích thước của biến con trỏ vẫn là 4 byte.</para>
+    <list list-type="bulleted" id="id9222690">
+      <item>Con trỏ không định kiểu:</item>
+    </list>
+    <para id="id4783590">Là kiểu con trỏ không quan tâm đến kiểu dữ liệu mà nó trỏ tới.</para>
+    <para id="id10482794">Cách khai báo:</para>
+    <para id="id9285583">Var tên biến: Pointer;</para>
+    <list list-type="bulleted" id="id5417020">
+      <item>Địa chỉ của một đối tượng:</item>
+    </list>
+    <para id="id9407202">Địa chỉ một đối tượng trong bộ nhớ được xác định bởi địa chỉ của ô nhớ đầu tiên mà hệ thống dành cho đối tượng đó.</para>
+    <table id="id10647027" summary="">
+      <tgroup cols="2">
+        <colspec colnum="1" colname="c1"/>
+        <colspec colnum="2" colname="c2"/>
+        <tbody>
+          <row>
+            <entry>$0101</entry>
+            <entry>$FFFF</entry>
+          </row>
+          <row>
+            <entry>Segment (địa chỉ đoạn)</entry>
+            <entry>Offset(địa chỉ tương đối trong đọan)</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <para id="id11573294"> Địa chỉ ô thứ 65535, thuộc đoạn 257.</para>
+    <para id="id9465280">Các thủ tục và hàm tác động lên con trỏ:</para>
+    <list list-type="bulleted" id="id3870124">
+      <item>Gán giá trị ban đầu:</item>
+    </list>
+    <para id="id9473214">Ct:=nil;</para>
+    <list list-type="bulleted" id="id7249534">
+      <item>Gán địa chỉ của một đối tượng cho con trỏ:</item>
+    </list>
+    <list list-type="enumerated" id="id5901581">
+      <item>ct:=@x;</item>
+    </list>
+    <para id="id9059648">b. ct:=Addr(x)</para>
+    <para id="id5694621">Hàm Addr()cho địa chỉ của đối tượng x, địa chỉ này thuộc kiểu Pointer</para>
+    <para id="id3258413">c. ct:=Ptr(segment):</para>
+    <para id="id9228954">Hàm Ptr trong phép gán trên đòi hỏi các tham số segment và offset phải là giá trị kiểu Word viết trong hệ 16, ví dụ :</para>
+    <para id="id3220954">ct:= Ptr($B800,$0000);đưa con trỏ trỏ tới ô nhớ của vùng Video Ram </para>
+    <para id="id11378567">Nhận xét:</para>
+    <para id="id11697686">Hai phép gán @ và Addr() cùng trả về địa chỉ kiểu pointer nên chúng là tương đương.</para>
+    <para id="id9476700">3. 3 phép gán giữa hai con trỏ </para>
+    <para id="id3695704">Hai con trỏ tương thích (cùng kiểu) có thể gán giá trị cho nhau, khi đó chúng cùng trỏ tới một địa chỉ .</para>
+    <para id="id11697767">Ví dụ 4.3</para>
+    <para id="id5318928">Var</para>
+    <para id="id11560888">ct1:^Float;</para>
+    <para id="id3679290">ct2:^Byte;</para>
+    <para id="id3349321">ct3:^Pointer;</para>
+    <para id="id6464783">x:string;</para>
+    <para id="id10885132">Ví dụ trên khai báo ba con trỏ thuộc ba kiểu khác nhau, ct1 là con trỏ thực,ct2 là con trỏ nguyên và ct3là con trỏ không định kiểu, x là biến chuỗi. Khi đó các phép gán :</para>
+    <para id="id9435862">ct3:@x;</para>
+    <para id="id3751092">ct2=ct3;</para>
+    <para id="id10769490">là hợp lệ vì ct2 và ct3 là tương thích, chúng cùng trỏ đến địa chỉ cùng biến x</para>
+    <para id="id3392603">ct1:=ct2;</para>
+    <para id="id10728748">là không hợp lệ vì hai con trỏ không tương thích .</para>
+    <para id="id10566755">3. 4 Phép so sánh hai con trỏ</para>
+    <para id="id9187579">Chỉ tồn tại phép so sánh =(bằng nhau)và&lt;&gt;(khác nhau)giữa hai con trỏ nếu chúng tương thích. Kết quả so sánh là một giá trị Boolean nghĩa là True hoặc False.</para>
+    <para id="id7058538">Hai con trỏ tương thíchgọi là bằng nhau nếu chúng cùng trỏ tới một đối tượng , ngược lại gọi là khác nhau.</para>
+    <para id="id3316179">4.Truy nhập dữ liệu </para>
+    <para id="id10498481">Khi con trỏ ct đang trỏ tới một vùng dữ liệu nào đó Pascal cho phép dùng ký hiệu ct^ như là một biến để truy nhập vào vùng dữ liệu đó . Biến ct^ mang trong đó dữ liệu của vùng mà con trỏ ct đang trỏ tới.</para>
+    <para id="id9733505">Như vậy chúng ta có thể truy nhập tới một biến, hàm hai thủ tục mà không cần biết tên các đối tượng này miễn là biết con trỏ đang trỏ vào chúng .</para>
+    <para id="id9474560">Ví dụ 4.5 </para>
+    <para id="id9764352">Program contro;</para>
+    <para id="id9472826">Uses crt;</para>
+    <para id="id6696250">Type zl= string[3];</para>
+    <para id="id5575298">Var</para>
+    <para id="id10440164">z:string;ct:^zl;i:byte;</para>
+    <para id="id10451184">Begin </para>
+    <para id="id10768437">clrscr;</para>
+    <para id="id4804215">z:=’Ha noi’;ct:=@z;</para>
+    <para id="id10852794">writeln(ct^); </para>
+    <para id="id8864874">For i:=1 to length(z) do write(upcase(ct^[i]);</para>
+    <para id="id3875513">Readln;</para>
+    <para id="id4682339">End.</para>
+    <para id="id8510376">Chạy chương trình ta nhận được kết quả:</para>
+    <para id="id9717238">Ha noi</para>
+    <para id="id10891692">HA NOI</para>
+    <para id="id10489248">Mọi xử lý trên biến z đều có thể xử lý trên biến ct^ bởi vì biến con trỏ ct đang trỏ vào z.</para>
+    <list list-type="enumerated" id="id10548768">
+      <item>Mảng con trỏ và con trỏ kiểu mảng:</item>
+    </list>
+    <para id="id10786245">Con trỏ là một kiểu dữ liệu nên biến con trỏ có thể là các thành phần của mảng, ngược lại mảng là một kiểu dữ liệu có cấu trúc nên con trỏ cũng có thể trỏ tới các biến mảng.</para>
+    <para id="id9202202">5.1 Con trỏ kiểu mảng:</para>
+    <para id="id9634210">Khai báo:</para>
+    <para id="id11574554">Type m= array[1..5] of Byte;</para>
+    <para id="id11383635">Var</para>
+    <para id="id10637592">Ct1:^m;</para>
+    <para id="id7057455">Ct1 là biến con trỏ kiểu mảng, khi đó biến ct1^ sẽ gồm 5 phần tử, mỗi phần tử là một số kiểu Byte. </para>
+    <para id="id7201875">Truy cập vào biến ct1^:</para>
+    <para id="id9868119">Read(ct1^[i]); hoặc Write(ct1^[i]);</para>
+    <para id="id5587528">5.2 Mảng các con trỏ:</para>
+    <para id="id7445440">Khai báo:</para>
+    <para id="id6266878">Var:</para>
+    <para id="id10452214">Ct:array[1..10] of ^string;</para>
+    <para id="id8861940">s1,s2:String;</para>
+    <para id="id10469904">Begin</para>
+    <para id="id9473036">s1,s2:String;</para>
+    <para id="id5410062">Begin</para>
+    <para id="id11536624">S1:=’Ha noi Viet nam’;</para>
+    <para id="id3312690">S2:=’Happy new Year’;</para>
+    <para id="id9455004">…</para>
+    <para id="id9638890">Ct là mảng 10 con trỏ, tất cả 10 con trỏ trỏ tới đến kiểu dữ liệu String. Mỗi con trỏ trỏ đến một đối tương khác nhau.</para>
+    <list list-type="bulleted" id="id9839697">
+      <item>Nếu ta chưa gán địa chỉ của bất kỳ đối tượng nào cho biến con trỏ mà chỉ thực hiện phép gán:</item>
+    </list>
+    <para id="id5930327">Ct[i]:^=s1; với 1&lt;=i&lt;=10</para>
+    <para id="id8017056">Thì 10 con trỏ đều trỏ tới s1; </para>
+    <list list-type="bulleted" id="id3266611">
+      <item>Trong trường hợp ta gán dữ liệu từ một đối tượng cho nhiều biến con trỏ thì tất cả các con trỏ trỏ tới đối tượng được gán cuối cùng.</item>
+    </list>
+    <para id="id9162113">Nếu thực hiện phép gán:</para>
+    <para id="id4237911">Ct[1]:=@s2;</para>
+    <para id="id5455418">Nghĩa là gán địa chỉ của biến s2 vào con trỏ thứ nhất trong mảng thì chỉ có ct[1] là trỏ tới biến s2, các con trỏ con lại chưa trỏ vào đâu cả.</para>
+    <list list-type="enumerated" id="id4431533">
+      <item>Danh sách liên kết và hàng đợi:</item>
+    </list>
+    <para id="id9757807">Danh sách là một tập hợp hữu hạn các phần tử liên kết với nhau, trường hợp tổng quát nhất mỗi phần tử là một bản ghi. Điều đặt biệt của mỗi bản ghi trong danh sách là ngoài các trường dữ liệu, còn một trường dùng để liên kết và trường này lại là một con trỏ. Con trỏ này có nhiệm vụ trỏ vào địa chỉ của bản ghi kế tiếp. Nếu bản ghi hiện thời là bản ghi cuối cùng thì con trỏ sẽ trỏ vào Nil.</para>
+    <para id="id11692989">Một danh sách chưa có phần tử nào được gọi là danh sách rỗng. Việc thêm một phần tử vào danh sách có thể rơi vào một trong ba khả năng:</para>
+    <list list-type="enumerated" id="id9360417">
+      <item>Phần tử mới được thêm vào đầu danh sách</item>
+      <item>Phần tử mới được thêm vào cuối danh sách.</item>
+      <item>Phần tử mới được thêm vào một vị trí xác định</item>
+    </list>
+    <para id="id8854491">Trường hợp a ta có danh sách liên kết ngược (LIFO), còn trường hợp b ta có danh sách liên kết thuận (FIFO) hay còn gọi là hàng đợi QUEUE.</para>
+    <list list-type="bulleted" id="id10767767">
+      <item>Danh sách liên kết ngược:</item>
+    </list>
+    <para id="id10616165">Là loại danh sách mà trường liên kết của phần tử tạo ra sau luôn trỏ vào phần tử trước đó.</para>
+    <table id="id10817861" summary="">
+      <tgroup cols="2">
+        <colspec colnum="1" colname="c1"/>
+        <colspec colnum="2" colname="c2"/>
+        <tbody>
+          <row>
+            <entry>Phần tử cuối</entry>
+            <entrytbl cols="1">
+              <colspec colnum="1" colname="c1"/>
+              <tbody>
+                <row>
+                  <entry>Dữ liệu</entry>
+                </row>
+                <row>
+                  <entry>Trường liên kết</entry>
+                </row>
+              </tbody>
+            </entrytbl>
+          </row>
+          <row>
+            <entry>Các phần tử trung gian</entry>
+            <entrytbl cols="1">
+              <colspec colnum="1" colname="c1"/>
+              <tbody>
+                <row>
+                  <entry>Dữ liệu</entry>
+                </row>
+                <row>
+                  <entry>Trường liên kết</entry>
+                </row>
+              </tbody>
+            </entrytbl>
+          </row>
+          <row>
+            <entry>Phần tử đầu</entry>
+            <entrytbl cols="1">
+              <colspec colnum="1" colname="c1"/>
+              <tbody>
+                <row>
+                  <entry>NilDữ liệu</entry>
+                </row>
+                <row>
+                  <entry>Trường liên kết</entry>
+                </row>
+              </tbody>
+            </entrytbl>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <para id="id10756054">Type</para>
+    <para id="id3225215">Ds=^nguoi;</para>
+    <para id="id3723862">Nguoi=record</para>
+    <para id="id11751729">Mhs:byte;</para>
+    <para id="id9460783">Hoten:string[20];</para>
+    <para id="id11993148">Diem:real;</para>
+    <para id="id11675675">Tiep:ds;</para>
+    <para id="id11560976">End;</para>
+    <para id="id3873678">Sau khi khai báo kiểu dữ liệu cần khai báo biến con trỏ Dslop để lưu trữ dữ liệu nhập vào và biến Ctcuoi (con trỏ cuối) để trỏ vào phần tử cuối cùng.</para>
+    <para id="id11527298">Đoạn chương trình mô phỏng tạo danh sách liên kết ngược.</para>
+    <para id="id9775210">Ctcuoi:=nil; {khởi tạo danh sách};</para>
+    <para id="id8462645">Bắt đầu lặp:</para>
+    <para id="id6464938"> New (dslop); {tạo biến động lưu trữ dữ liệu nhập vào}</para>
+    <para id="id8164981"> Nhập dữ liệu; {nhập dữ liệu cho phần tử thứ i}</para>
+    <para id="id10685017"> Tiep:=ctcuoi; {trường liên kết của phần tử thứ i trỏ vào địa chỉ của con trỏ cuố ctcuoi}</para>
+    <para id="id4564392"> Ctcuoi:=dslop; {hướng ctcuoi vào bản ghi hiện thời}</para>
+    <para id="id5193699">Kết thúc lặp.</para>
+    <para id="id5337710">Ví dụ 4.6 : Xây dựng danh sách, chương trình con Hien_LIFO cho hiện dữ liệu lên màn hình theo chiều ngược, phần tử nhập sau hiện trước.</para>
+    <para id="id11459936">Program dslk_nguoc;</para>
+    <para id="id10891080">Uses Crt;</para>
+    <para id="id10784676">Type ds=^nguoi;</para>
+    <para id="id11684417">Nguoi=record</para>
+    <para id="id5573241">Mhs:byte;</para>
+    <para id="id3758285">Hoten:string[20];</para>
+    <para id="id9201497">Diem:real;</para>
+    <para id="id9757184">Tiep:ds;</para>
+    <para id="id5412013">End;</para>
+    <para id="id9243372">VAr </para>
+    <para id="id9777600"> dslop,ctcuoi:ds; i,j:byte;</para>
+    <para id="id11688764"> tt:char;</para>
+    <para id="id8631354">Procedure Hien_LIFO;</para>
+    <para id="id10613793">var ct1:ds;</para>
+    <para id="id4477675">Begin</para>
+    <para id="id3322304"> clrscr;</para>
+    <para id="id10819621"> writeln('Du lieu da nhap-Hien tu cuoi ve dau');</para>
+    <para id="id11575079"> writeln;</para>
+    <para id="id3258604"> ct1:=ctcuoi;</para>
+    <para id="id10185377"> while ct1&lt;&gt;nil do</para>
+    <para id="id8001322"> with ct1^ do</para>
+    <para id="id10783364"> Begin</para>
+    <para id="id10658300">  write(Mhs,' ',hoten);</para>
+    <para id="id10890910">  for j:=1 to (20-length(hoten)) do write('');</para>
+    <para id="id3740748">  writeln(diem:5:2);</para>
+    <para id="id10876055">  ct1:=tiep;</para>
+    <para id="id10938303"> end;</para>
+    <para id="id10769639">end;</para>
+    <para id="id9253614">Begin</para>
+    <para id="id3875510">clrscr;</para>
+    <para id="id9461696">ctcuoi:=nil; i:=0;</para>
+    <para id="id10974830">Repeat;</para>
+    <para id="id10637424">New(dslop); i:=i+1;</para>
+    <para id="id9723004">With dslop^ do</para>
+    <para id="id10932218">Begin</para>
+    <para id="id10544058"> writeln('ma ho so:',i);mhs:=i;</para>
+    <para id="id9415506"> write('Ho va ten:'); readln(hoten);</para>
+    <para id="id10556830"> write('diem');readln(diem);</para>
+    <para id="id5416245"> tiep:=ctcuoi;</para>
+    <para id="id7642586"> ctcuoi:=dslop;</para>
+    <para id="id8320804"> writeln('nhap tiep khong?C/K'); tt:=readkey;</para>
+    <para id="id8283115"> writeln;</para>
+    <para id="id9757805">end;</para>
+    <para id="id9471639">Until tt in ['k','K'];</para>
+    <para id="id7807096">Hien_lifo;</para>
+    <para id="id10613501">Readln;</para>
+    <para id="id3364759">END.</para>
+    <list list-type="bulleted" id="id9465244">
+      <item>Hàng đợi Queue-Danh sách liên kết thuận:</item>
+    </list>
+    <para id="id9669951">Là loại danh sách mà phần tử nào nhập trước thì được lấy ra trước.</para>
+    <para id="id10312406">Ctdau:=nil; {khởi tạo danh sách};</para>
+    <para id="id10651025">Bắt đầu lặp:</para>
+    <para id="id10885043"> New (dslop); {tạo biến động lưu trữ dữ liệu nhập vào}</para>
+    <para id="id8629441"> Nhập dữ liệu; {nhập dữ liệu cho phần tử thứ i}</para>
+    <para id="id10451506"> Nếu ctdau=Nil thì ctdau:=dslop;</para>
+    <para id="id3809317"> Ngược lại ctcuoi^.tiep:=dslop;</para>
+    <para id="id10768578"> Ctcuoi:=dslop;</para>
+    <para id="id8853786"> Ctcuoi^.Tiep:=nil; Ctcuoi:=dslop; {hướng ctcuoi vào bản ghi hiện thời}</para>
+    <para id="id11684283">Kết thúc lặp.</para>
+    <list list-type="bulleted" id="id8205551">
+      <item>Chèn thêm phần tử vào danh sách:</item>
+    </list>
+    <para id="id4499379">Quá trình chèn một phần tử vào danh sách qua các bước sau:</para>
+    <para id="id10612148">- Xác định vị trí chèn</para>
+    <para id="id3858386">- Tạo một biến động và xin cấp phát vùng nhớ cho biến động để lưu dữ liệu sẽ chèn vào danh sách.</para>
+    <para id="id3751088">- Chuyển trường Tiep của phần tử hiện thời đến phần tử bổ sung</para>
+    <para id="id10679240">- Chuyển trường Tiep của phần tử bổ sung đến phần tử trước phần tử hiện thời.</para>
+    <para id="id5410161">New(ct1); </para>
+    <para id="id10782326">With ct1^ do Nhập dữ liệu cho phần tử bổ sung</para>
+    <para id="id4772369">Dslop:=ctcuoi; {hướng con trỏ đến phần tử cuối cùng trong danh sách}</para>
+    <para id="id7990865">While (dslop&lt;&gt;nil) and (dslop^.mhs&lt;&gt;n) do</para>
+    <para id="id10113596">Dslop:=dslop^.tiep; {hướng con trỏ đến vị trí cần chèn}</para>
+    <para id="id4338328">Ct1^.tiep:=dslop^.tiep; </para>
+    <para id="id10637801">Dslop^.tiep:=ct1;</para>
+    <para id="id5591090"/>
+  </content>
+</document>

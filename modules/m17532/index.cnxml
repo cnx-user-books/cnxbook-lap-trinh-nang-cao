@@ -1,0 +1,143 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Dữ liệu kiểu tập hợp</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>21fdd45d-6317-43ed-a268-fede21545d75</md:uuid>
+</metadata>
+  <content>
+    <para id="id48586273">DỮ LIỆU KIỂU TẬP HỢP</para>
+    <para id="id48586278">1 Khái niệm tập hợp:</para>
+    <para id="id48586283"> a. Khái niệm tập hợp:</para>
+    <para id="id48586289"> Một tập hợp bao gồm n phần tử cùng kiểu dữ liệu (0&lt;=n&lt;=255), kiểu của các phần tử phải là kiểu vô hướng đếm được (nguyên, ký tự, logic, liệt kê, đoạn con). Số thứ tự các phần tử trong tập hợp luôn nằm trong khoảng 0-255.</para>
+    <para id="id48588365"> b. Khai báo kiểu và gán dữ liệu vào tập hợp:</para>
+    <para id="id48588376"> Để mô tả kiểu tập hợp, dùng từ khóa Set of tiếp đó là kiểu dữ liệu cơ bản của các phần tử tạo nên tập hợp.</para>
+    <para id="id48588384"> Ví dụ:</para>
+    <para id="id48588390"> Type</para>
+    <para id="id48588395">  mau=set of (xanh, hong, tim, vang, den ,nau);</para>
+    <para id="id48588402">  sn1:set of 0..100;</para>
+    <para id="id48588412">  sn2: set of 100..200;</para>
+    <para id="id48588418">  chucai1: set of ‘a’..’z’;</para>
+    <para id="id48588426">  chucai2: set of ‘A’..’Z’;</para>
+    <para id="id48588433">  Kytu=set of Char;</para>
+    <para id="id48588439"> Var a:mau; b:sn1;</para>
+    <para id="id48588444"> Khi khai báo kiểu tập hợp cần chú ý một số điều sau đây:</para>
+    <list list-type="bulleted" id="id48588452">
+      <item>Thứ tự các phần tử trong tập hợp luôn theo chiều tăng dần.</item>
+    </list>
+    <para id="id48588467">Nếu khai báo sn1=set of 200..100 -&gt; sai</para>
+    <list list-type="bulleted" id="id48588475">
+      <item>Kiểu dữ liệu của các phần tử mặc dù có thể là số nguyên, nhưng khi khai báo là kiểu Byte.</item>
+    </list>
+    <para id="id48588488">Sn=set of Byte; -&gt; đúng</para>
+    <para id="id48588496">Sn2 =set of Word; -&gt; sai</para>
+    <list list-type="bulleted" id="id48588505">
+      <item>Những giá trị mà chúng ta khai báo sau từ khóa SET OF sẽ dẫn tới một trong 2 khả năng:</item>
+    </list>
+    <para id="id48588520">  + Nếu là khai báo kiểu liệt kê, kiểu Boolean thì phía sau từ khóa SET OF là giá trị mà tập hợp có thể nhận.</para>
+    <para id="id48590096">  Ví dụ:</para>
+    <para id="id48588530">  Nếu gán a:=[xanh,tim,luc]; -&gt; sẽ bị báo lỗi.</para>
+    <para id="id48590108">+ Với những kiểu còn lại(nguyên, ký tự, đoạn con) những từ khai báo sau từ khóa Set of không phải là giá trị của các phần tử của tập hợp mà là thứ tự của phần tử đó. Kiểu của các dữ liệu đó sẽ cho biết các phần tử của tập hợp. </para>
+    <para id="id48590126">Type</para>
+    <para id="id48590130"> sn1=set of 0..100;</para>
+    <para id="id48590136"> kytu=set of char;</para>
+    <para id="id48590141"> Var </para>
+    <para id="id48590146">  a:sn1; b:kytu;</para>
+    <para id="id48590152"> ...</para>
+    <para id="id48590158"> Với khai báo trên, ta không thể gán:</para>
+    <para id="id48590168"> a:=['a',12,'c'];</para>
+    <para id="id48590173"> b:=[1,2,100];</para>
+    <list list-type="bulleted" id="id48590178">
+      <item>Không được gán trực tiếp các số nguyên có giá trị lớn hơn 255</item>
+    </list>
+    <para id="id48590189"> Vd b2:=[100,200,256]</para>
+    <para id="id48590195">2 Phân loại tập hợp:</para>
+    <para id="id48590200">a. Tập hợp cùng kiểu: </para>
+    <para id="id48590205">Các tập hợp được coi là cùng kiểu nếu chúng được xây dựng trên cùng một kiểu cơ bản.</para>
+    <para id="id48590216">Ví dụ:</para>
+    <para id="id48590221">Type</para>
+    <para id="id48590225"> mau=set of (xanh,hong,tim,vang,den,nau);</para>
+    <para id="id48590230"> mau_xe=set of (xanh..vang);</para>
+    <para id="id48590236"> b. Hình thành một tập hợp:</para>
+    <para id="id48590242"> Một tập hợp được hình thành khi ta gán cho biến tập hợp các giá trị cụ thể, các giá trị này được đặt trong hai dấu ngoặc vuông.</para>
+    <para id="id48590253"> Ví dụ:</para>
+    <para id="id48590259"> c:=[2,15,30,100..200];</para>
+    <para id="id48590267"> chu:=[‘A’..’Z’];</para>
+    <para id="id48588813">3 Các phép tính trên tập hợp:</para>
+    <para id="id48588818"> a. Phép gán:</para>
+    <para id="id48588824"> Phép gán được dùng để hình thành nên một tập hợp. Có thể gán một tập hợp cho một biến tập hợp cùng kiểu hoặc gán một biến tập hợp cho cho một biến tập hợp khác cùng kiểu.</para>
+    <para id="id48588837"> b. Phép hợp:</para>
+    <para id="id48588843"> Hợp của 2 tập hợp A và B khi đó có thể viết là A+B</para>
+    <para id="id48588851"> Hợp của 2 tập hợp A và B là một tập hợp gồm các phần tử thuộc A và các phần tử thuộc B.</para>
+    <para id="id48588863"> Giả sử các tập hợp A,B,C được hình thành như sau:</para>
+    <para id="id48588871"> A:=[1..8,10..15];</para>
+    <para id="id48588876"> B:=[5..9,20,30];</para>
+    <para id="id48588884"> C:=A+B;</para>
+    <list list-type="bulleted" id="id48588890">
+      <item>C gồm các phần tử [1..15,20,30];</item>
+    </list>
+    <para id="id48588903">c. Phép giao:</para>
+    <para id="id48588911"> Giao của 2 tập hợp A và B, ký hiệu là A*B, là một tập hợp gồm các phần tử đồng thời thuộc A và thuộc B.</para>
+    <para id="id48588923"> C:=A*B;</para>
+    <list list-type="bulleted" id="id48588932">
+      <item>C gồm các phần tử [5,6,7,8];</item>
+    </list>
+    <para id="id48588945">d. Phép trừ:</para>
+    <para id="id48588950">Phép trừ của 2 tập hợp A và B, ký hiệu là A-B, cho ta một tập hợp gồm các phần tử thuộc A và nhưng không thuộc B.</para>
+    <para id="id48588962">C:=A-B; C gồm các phần tử [1..4,10..15]</para>
+    <para id="id48588971"> e. Phép thuộc về:</para>
+    <para id="id48588977"> Phép thuộc về ký hiệu là IN là một phép thử xem một giá trị hay một biến có thuộc về một tập hợp hay không? Nếu có giá trị phép thử là True, ngược lại là False.</para>
+    <para id="id48588989"> Ví dụ:</para>
+    <para id="id48588995">  T1:=[‘a’..’z’];</para>
+    <para id="id48589002">  T2:=’c’;</para>
+    <para id="id48588030">  Write (T2 in T1);</para>
+    <para id="id48588036">  Write(‘1’ in T1);</para>
+    <para id="id48588042">3.4 Các phép so sánh trên tập hợp:</para>
+    <para id="id48588048"> a. Phép bằng, ký hiệu là =</para>
+    <para id="id48588054"> Hai tập hợp A và B gọi là bằng nhau nếu mọi phần tử của A đều thuộc B và mọi phần tử của B đều thuộc A.</para>
+    <para id="id48588068"> Ví dụ:</para>
+    <para id="id48588073"> [1..6]=[1,2,3,4,5,6] cho kết quả là True</para>
+    <para id="id48588080"> [‘a’,’b’,’c’]=[‘A’,’B’,’C’] cho kết quả False</para>
+    <para id="id48588088"> b. Phép không bằng, ký hiệu &lt;&gt;</para>
+    <para id="id48588098"> Hai tập hợp A và B gọi là không bằng nhau nếu tập A có ít nhất một phần tử không thuộc tập B hoặc tập B có ít nhất một phần tử không thuộc A.</para>
+    <para id="id48588109"> [1..6]&lt;&gt;[1,2,3,4,5,6] cho kết quả là False</para>
+    <para id="id48588116"> c. Phép nhỏ hơn hoặc bằng, ký hiệu &lt;=:</para>
+    <para id="id48588126"> Tập A gọi là nhỏ hơn hoặc bằng tập B nếu mọi phần tử của A đều thuộc tập B.  </para>
+    <para id="id48588136"> [1..6]&lt;=[1,2,3,4,5,6,7] cho kết quả là True</para>
+    <para id="id48588142"> d. Phép lớn hơn hoặc bằng, ký hiệu &gt;=:</para>
+    <para id="id48588157"> Tập A gọi là lớn hơn hoặc bằng tập B nếu mọi phần tử của B đều thuộc tập A.  </para>
+    <para id="id48588170"> [1..6]&gt;=[1,2,3,4,5,6,7] cho kết quả là False</para>
+    <para id="id48588177"> Bài tập 1: Trò chơi gieo xúc xắc: nguyên tắc chơi như sau: người chơi chọn một số trong khoảng từ 1 đến 6, máy sẽ gieo 3 con xúc xắc để được 3 số. Nếu số của người chơi nằm trong tập số mà máy đã gieo thì người chơi thắng, ngược lại người chơi thua. Nếu ba lần chơi mà người chơi đều thắng thì tuyên bố người chơi trúng số độc đắc.</para>
+    <para id="id48588203"> Program xuc_xac;</para>
+    <para id="id48588208"> Uses crt;</para>
+    <para id="id48588217"> Var xucxac:set of 1..6;</para>
+    <para id="id48588223"> So,i,dem,a,b,c:1..6; tl:char;</para>
+    <para id="id48588228"> Begin</para>
+    <para id="id48588234"> Clrscr;</para>
+    <para id="id48588239"> Repeat</para>
+    <para id="id48588244"> Clrscr;</para>
+    <para id="id48588250"> For i:=1 to 3 do</para>
+    <para id="id48588255">  Begin</para>
+    <para id="id48588262">  Textcolor(5);</para>
+    <para id="id48588268">  Write(‘moi ban chon mot so tu 1 den 6’); readln(so);</para>
+    <para id="id48588276">  a:=random(6); b:=random(6); c:=random(6);</para>
+    <para id="id48588286">  xucxac:=[a,b,c];</para>
+    <para id="id48588292">  writeln(‘so ma ban da chon’, so);</para>
+    <para id="id48588300">  writeln(‘so may da gieo’, a,’ ‘,b,’ ‘,c);</para>
+    <para id="id48588308">  If so in xucxac then</para>
+    <para id="id48588315">  Begin</para>
+    <para id="id48588321">  Textcolor(4);</para>
+    <para id="id48588327">  Writeln(‘Ban da thang van thu’,i);</para>
+    <para id="id48725210">  Dem:=dem+1;</para>
+    <para id="id48725216">  End</para>
+    <para id="id48725222">  Else</para>
+    <para id="id48725229">   Writeln(‘Ban da thang van thu’,i);</para>
+    <para id="id48725238">  If dem=3 then Writeln(‘Ban trung doc dac – Xin chuc mung’);</para>
+    <para id="id48725246"> End;</para>
+    <para id="id48725252"> Writeln;</para>
+    <para id="id48725257"> Write(‘choi tiep hay k?C/K’);</para>
+    <para id="id48725267"> Readln(tl);</para>
+    <para id="id48725272"> Until upcase(tl)=’K’;</para>
+    <para id="id48725279"> End.</para>
+    <para id="id48725284"/>
+    <para id="id48725288"> Bài tập 2: Viết chương trình nhập vào một chuỗi (chữ và số) , in ra kết quả số lần xuất hiện của mỗi chữ cái, in ra tổng số các chữ cái nhập từ bàn phím.</para>
+    <para id="id48725311"/>
+  </content>
+</document>

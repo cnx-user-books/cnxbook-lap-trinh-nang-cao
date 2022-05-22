@@ -1,0 +1,460 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Đơn vị chương trình và thư viện chuẩn</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>ea1b5974-3bbe-469c-a1aa-9ff9d47c5364</md:uuid>
+</metadata>
+  <content>
+    <para id="id11397763">ĐƠN VỊ CHƯƠNG TRÌNH VÀ THƯ VIỆN CHUẨN</para>
+    <para id="id11397766">1. Khái niệm đơn vị chương trình:</para>
+    <para id="id10264438"> Thuật ngữ Unit trong Pascal được gọi là :”Đơn vị chương trình”. Mỗi Unit được xem như một Modul nhỏ chứa đựng một số công cụ cần thiết giúp cho người lập trình dễ dàng thiết kế chương trình.</para>
+    <para id="id3328404"> Lệnh tham chiếu đến Unit được đặt ở đầu chương trình với cú pháp:</para>
+    <para id="id8108984"> USES tênUnit;</para>
+    <para id="id10878295"> Ví dụ: Uses CRT,Graph;</para>
+    <para id="id11226620"> Các Unit được tổ chức trong Pascal dưới 2 dạng:</para>
+    <para id="id4766252"> * Các file độc lập với phần mở rộng là TPU(Turbo Pascal Unit), ví dụ Graph.TPU</para>
+    <para id="id12790641"> * File thư viện chuẩn với phần mở rộng TPL, ví dụ Turbo.TPL</para>
+    <para id="id12821802"> Khi file Turbo.exe được gọi, nghĩa là chương trình Pascal được khởi động từ file Turbo.tpl cũng tự động được tải vào bộ nhớ. Lúc này các Unit chứa trong các thư viện chuẩn sẽ sẵn sàng được tham chiếu đến. Việc truy cập đến các Unit trong thư viện chuẩn nhanh hơn so với truy cập vào các Unit độc lập vì chúng đã thường trú trong bộ nhớ.</para>
+    <para id="id11261013">2. Thư viện chuẩn:</para>
+    <para id="id11261016"> Thư viện chuẩn của Pascal có tên là Turbo.tpl, thư viện này chứa 5 Unit:</para>
+    <para id="id12552203"> 2.1 Crt</para>
+    <para id="id13344816"> CRT bao gồm các thủ tục quản lý màn hình, bàn phím và âm thanh.</para>
+    <para id="id11857987"> 2.2 Dos:</para>
+    <para id="id13263607"> Unit này chứa các chức năng quản lý tệp, đĩa, ngày tháng. </para>
+    <para id="id12992971"> 2.3 Overlay:</para>
+    <para id="id13347725"> Unit này được sử dụng khi chương trình nguồn có dung lượng lớn. Sử dung Overlay để tải từng phần chương trình nguồn vào bộ nhớ để chạy.</para>
+    <para id="id13347730"> 2.4 Printer:</para>
+    <para id="id8619389"> Unit này định nghĩa tên máy in là LST. Việc kết xuất thông tin bằng lệnh Write khi tham chiếu đến LST sẽ cho phép ta in ra máy in các kết quả bài toán.</para>
+    <para id="id5986893"> 2.5 System:</para>
+    <para id="id12518965"> Đây là đơn vị cơ bản và quan trọng nhất của pascal, nó chứa các thủ tục vào ra như Read, Write…Khi Pascal được khởi động và thư viện chuẩn được nạp vào bộ nhớ thì Unit này cũng tự động liên kết với mọi chương trình, vì thế ở đầu chương trình không cần đến lời gọi Uses System.</para>
+    <list list-type="enumerated" id="id13378115">
+      <item>Xây dựng Unit:</item>
+    </list>
+    <para id="id13012515">Cấu trúc một Unit bao gồm 4 phần cơ bản sau:</para>
+    <list list-type="bulleted" id="id10922363">
+      <item>Phần tiêu đề:</item>
+    </list>
+    <para id="id8736127">Unit tenUnit;</para>
+    <para id="id11388952">Lưu ý rằng Pascal quy định bắt buộc tên Unit sau này sẽ được dùng làm tên tệp để lưu trữ tệp nguồn của Unit.</para>
+    <list list-type="bulleted" id="id12551668">
+      <item>Phần khai báo chung</item>
+    </list>
+    <para id="id12534863">Bắt đầu bằng từ khóa INTERFACE.</para>
+    <para id="id12534868">Trong phần này ta khai báo các kiểu dữ liệu mới, các biến, hằng, hàm, thủ tục mà sau này các chương trình tham chiếu đến các Unit sẽ sử dụng.</para>
+    <para id="id11894949">Ví dụ chúng ta xây dựng một Unit lấy tên là HHP (hình học phẳng) trong đó có các hàm tính diện tích, chu vi các hình chữ nhật, tam giác, hình tròn. Khi đó phần khai báo chung sẽ là:</para>
+    <para id="id3064338"> INTERFACE</para>
+    <para id="id3064342"> Function dtcn(a,b:real):real;</para>
+    <para id="id3602142"> Function dttg(a,b,c:real):real;</para>
+    <para id="id13345449"> Function dttr(a:real):real;</para>
+    <para id="id10145473"> Function cvcn(a,b:real):real;</para>
+    <para id="id12534621"> Function cvtg(a,b,c:real):real;</para>
+    <para id="id12534625"> Function cvtr(a:real):real;</para>
+    <list list-type="bulleted" id="id13222945">
+      <item>Phần nội dung:</item>
+    </list>
+    <para id="id9344668">Bắt đầu bằng từ khóa IMPLEMENTTATION. Tại đây ta sẽ xây dựng các hàm, thủ tục mà tên của chúng đã được giới thiệu ở phần Interface.</para>
+    <para id="id9344672">Ví dụ:</para>
+    <para id="id8528350"> IMPLEMENTATION</para>
+    <para id="id11197668"> Function dtcn(a,b:real):real;</para>
+    <para id="id11197672"> Var s:real;</para>
+    <para id="id11179347"> Begin</para>
+    <para id="id13355279"> S:=a*b;</para>
+    <para id="id8973397"> Dtcn:=s;</para>
+    <para id="id9045813"> End;</para>
+    <para id="id9045818"> …..</para>
+    <para id="id12519019"> Function cvcn(a,b:real):real;</para>
+    <para id="id7974455"> Var c:real;</para>
+    <para id="id10802719"> Begin</para>
+    <para id="id10763072"> c:=(a+b)*2;</para>
+    <para id="id11964204"> cvcn:=c;</para>
+    <para id="id13031909"> End;</para>
+    <para id="id13031914"> ….</para>
+    <list list-type="bulleted" id="id12410190">
+      <item>Phần khởi động:</item>
+    </list>
+    <para id="id12511105">Phần khởi động đặt giữa 2 từ khóa Begin và End, sau End là dấu . Trong phần này ta đưa vào các lệnh gán giá trị ban đầu cho các biến.</para>
+    <para id="id4445530">Phần khởi động không bắt buộc phải có, trong trường hợp không có phần này thì ta bỏ đi từ khóa Begin.</para>
+    <para id="id11317720">* Cấu trúc tổng thể của một Unit:</para>
+    <para id="id8282037">UNIT  &lt;Tên Unit&gt;;    {phải trùng với tên file}</para>
+    <para id="id4723159">INTERFACE</para>
+    <para id="id9363898">    USES ............;</para>
+    <para id="id9363902">    CONST..........;</para>
+    <para id="id7951132">    TYPE ............;</para>
+    <para id="id7951135">    VAR  .............;</para>
+    <para id="id12691649">    Procedure  &lt;Tên thủ tục&gt;[(Các tham số)];</para>
+    <para id="id10849820">    Function  &lt;Tên hàm&gt;[(Các tham số)]:&lt;Kiểu hàm&gt;;</para>
+    <para id="id11960118">IMPLEMENTATION</para>
+    <para id="id11960121">    Procedure  &lt;Tên thủ tục&gt;[(Các tham số)];</para>
+    <para id="id13333421">    [Các khai báo]</para>
+    <para id="id4221699">    Begin</para>
+    <para id="id13036522">        .............</para>
+    <para id="id13036526">    End;</para>
+    <para id="id13265981"> </para>
+    <para id="id13265984">    Function  &lt;Tên hàm&gt;[(Các tham số)]:&lt;Kiểu hàm&gt;;</para>
+    <para id="id5482789">    [Các khai báo]</para>
+    <para id="id5482792">    Begin</para>
+    <para id="id6719217">        .............</para>
+    <para id="id6719220">    End;</para>
+    <para id="id9360386">END.</para>
+    <list list-type="bulleted" id="id13352440">
+      <item>Phần hướng dẫn:</item>
+    </list>
+    <para id="id10478724">Mỗi khi xây dựng xong cần có phần hướng dẫn để người sử dụng không gặp phải các lỗi khi chương trình tham chiếu đến Unit</para>
+    <para id="id5484219">Ví dụ: cách sử dụng Unit HHP tính diện tích chu vi tam giác</para>
+    <para id="id5629519">Program tinh_dtcv;</para>
+    <para id="id13347232">Uses crt,hhp;</para>
+    <para id="id13353552">Var m,n,q:real;</para>
+    <para id="id13353556">Begin</para>
+    <para id="id10453818">Clrscr;</para>
+    <para id="id10453821">Write(‘Cho biet 3 canh’); readln(a,b,c);</para>
+    <para id="id9801847">If(a+b&gt;c) and (a+c&gt;b) and (b+c&gt;a) then</para>
+    <para id="id5318922">Begin</para>
+    <para id="id10526636"> Writeln( ‘Dien tich tam giac la’,dttg(a,b,c):5:2);</para>
+    <para id="id12516879"> Writeln( ‘chu vi tam giac la’,cvtg(a,b,c):5:2);</para>
+    <para id="id12665036">End</para>
+    <para id="id4776574">Else</para>
+    <para id="id4776577"> Writeln(‘So lieu da cho khong tao thanh tam giac’);</para>
+    <para id="id6543173">Readln;</para>
+    <para id="id6543177">End.</para>
+    <para id="id13393864">Bài tập 1 a) Xây dựng Unit HHP. Unit này tạo nên một số hàm dùng để tính diện tích, chu vi các hình tròn, chữ nhật, tam giác. </para>
+    <para id="id5319436"> b) sử dụng Unit HHP tính diện tích, chu vi hình CN, hình tròn.</para>
+    <para id="id7117294">Bài tập 2:  a) Tạo Unit MYTOOL lưu ở file MYTOOL.PAS.</para>
+    <para id="id11965544">UNIT  MYTOOL;       </para>
+    <para id="id7245323">INTERFACE</para>
+    <para id="id7245326">    USES CRT;</para>
+    <para id="id10129771">    VAR  m:Integer;</para>
+    <para id="id13028978">    Function  UCLN(a,b:Integer):Integer;</para>
+    <para id="id13028981">    Function  NGUYENTO(n:Word):Boolean;</para>
+    <para id="id7825011">IMPLEMENTATION</para>
+    <para id="id7825014">    Function  UCLN(a,b:Integer):Integer;</para>
+    <para id="id5515393">    Begin</para>
+    <para id="id4583994">        While a&lt;&gt;b Do</para>
+    <para id="id4583997">           Begin</para>
+    <para id="id5930475">               If a&gt;b Then a:=a-b  Else  b:=b-a;</para>
+    <para id="id6174584">           End;</para>
+    <para id="id6174587">        UCLN:=a;</para>
+    <para id="id12138588">    End;</para>
+    <para id="id12138591">    Function  NGUYENTO(n:Word):Boolean;</para>
+    <para id="id6174440">    Var d,i:Word;</para>
+    <para id="id13350654">    Begin</para>
+    <para id="id13350657">        d:=0;</para>
+    <para id="id12512233">        For i:=2 To n DIV 2 Do</para>
+    <para id="id12512237">           If n MOD i=0 Then d:=d+1;</para>
+    <para id="id12632877">        NGUYENTO:=d=0;</para>
+    <para id="id10929289">    End;</para>
+    <para id="id5516188">END.</para>
+    <para id="id5516192"> b) Viết một chương trình có sử dụng Unit MYTOOL.</para>
+    <para id="id3519366">Uses Crt, MyTool;</para>
+    <para id="id5516450">Var  a,b:Integer;</para>
+    <para id="id5484272">Begin</para>
+    <para id="id5484275">    CLRSCR;</para>
+    <para id="id5516108">    Write(10,5,’CHUONG TRINH MINH HOA’);</para>
+    <para id="id5516111">    Write(‘Nhap a = ‘); Readln(a);</para>
+    <para id="id12958943">    Write(‘Nhap b = ‘); Readln(b);</para>
+    <para id="id11245273">    Writeln(‘UCLN cua ‘,a,’ va ‘,b,’ la:’,UCLN(a,b));</para>
+    <para id="id10760935">    Write(‘Nhap m = ‘); Readln(m);</para>
+    <para id="id10760938">    If  NGUYENTO(m) Then</para>
+    <para id="id10859023">        Writeln(m,’ la so nguyen to!’)</para>
+    <para id="id12377053">    Else</para>
+    <para id="id12377057">        Writeln(m,’ khong phai la so nguyen to!’);</para>
+    <para id="id10474927">    Readln;</para>
+    <para id="id11337637">End. </para>
+    <para id="id8971619">4. Một số Unit chuẩn:</para>
+    <para id="id12530647"> 4.1 System:</para>
+    <para id="id7245471"> Đây là Unit cơ bản và quan trọng nhất của Pascal, nó chứa các thủ tục vào ra như Read, Write…, các hàm sơ cấp thông dụng như Ln,Sqrt, Sin, Cos…Khi Pascal được khởi động và thư viện chuẩn được nạp vào bộ nhớ thì Unit này cũng tự động liên kết với mọi chương trình, vì thế ở đầu chương trình không cần đến lời gọi USES SYSTEM.</para>
+    <para id="id7674701"> 4.2 Dos:</para>
+    <para id="id5516315">Unit này chứa các chức năng quản lý tệp, đĩa, ngày tháng.Ngoài ra, có thể dùng Unit này để gọi trực tiếp các lệnh của HĐH Dos.</para>
+    <para id="id13137568"> 4.3 CRT:</para>
+    <para id="id10791174"> CRT là Unit liên quan đến các thủ tục trình bày màn hình. Trong CRT có các thủ tục sau:</para>
+    <list list-type="enumerated" id="id13221760">
+      <item>Gotoxy(m,n):</item>
+    </list>
+    <para id="id5156898">Chuyển con trỏ tới tọa độ cột m và dòng n. (1&lt;=m&lt;80; 1&lt;=n&lt;=25)</para>
+    <list list-type="enumerated" id="id4899667">
+      <item>CLRSCR: xóa màn hình</item>
+      <item>Delay(n): làm chậm lệnh phía trước n mili giây. Giá trị lớn nhất là 65536 ms.</item>
+      <item>Thuộc tính màu</item>
+    </list>
+    <para id="id12551535">Có 2 thủ tục gán thuộc tính màu cho ký tự viết ra màn hình là:</para>
+    <para id="id13220706">TEXTCOLOR(Mã màu): màu chữ</para>
+    <para id="id6174193">TEXTBACKGROUND(Mã màu) : màu nền</para>
+    <para id="id6174198">Bảng 3.1 </para>
+    <table id="id9332942" summary="">
+      <tgroup cols="6">
+        <colspec colnum="1" colname="c1"/>
+        <colspec colnum="2" colname="c2"/>
+        <colspec colnum="3" colname="c3"/>
+        <colspec colnum="4" colname="c4"/>
+        <colspec colnum="5" colname="c5"/>
+        <colspec colnum="6" colname="c6"/>
+        <tbody>
+          <row>
+            <entry>Mã màu</entry>
+            <entry>Tên hằng</entry>
+            <entry>Màu </entry>
+            <entry>Mã màu</entry>
+            <entry>Tên hằng</entry>
+            <entry>Màu</entry>
+          </row>
+          <row>
+            <entry>0</entry>
+            <entry>Black</entry>
+            <entry>Đen</entry>
+            <entry>4</entry>
+            <entry>Red</entry>
+            <entry>Đỏ</entry>
+          </row>
+          <row>
+            <entry>1</entry>
+            <entry>Blue</entry>
+            <entry>Xanh lam</entry>
+            <entry>5</entry>
+            <entry>Magenta</entry>
+            <entry>Tím</entry>
+          </row>
+          <row>
+            <entry>2</entry>
+            <entry>Green </entry>
+            <entry>Xanh lá cây</entry>
+            <entry>6</entry>
+            <entry>Brown</entry>
+            <entry>Nâu</entry>
+          </row>
+          <row>
+            <entry>3</entry>
+            <entry>Cyan</entry>
+            <entry>Xanh lơ</entry>
+            <entry>7</entry>
+            <entry>LightGray</entry>
+            <entry>Xám nhạt</entry>
+          </row>
+          <row>
+            <entry>8</entry>
+            <entry>DackGray</entry>
+            <entry>Xám sẫm</entry>
+            <entry>12</entry>
+            <entry>LightRed</entry>
+            <entry>Đỏ sáng</entry>
+          </row>
+          <row>
+            <entry>9</entry>
+            <entry>LightBlue </entry>
+            <entry>Xanh lam sáng</entry>
+            <entry>13</entry>
+            <entry>LightMagenta</entry>
+            <entry>Tím sáng</entry>
+          </row>
+          <row>
+            <entry>10</entry>
+            <entry>LightGreen</entry>
+            <entry>Xanh lá mạ sáng</entry>
+            <entry>14</entry>
+            <entry>Yellow</entry>
+            <entry>Vàng</entry>
+          </row>
+          <row>
+            <entry>11</entry>
+            <entry>Lightcyan</entry>
+            <entry>Xanh lơ sáng</entry>
+            <entry>15</entry>
+            <entry>White</entry>
+            <entry>Trắng</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <list list-type="enumerated" id="id11956881">
+      <item>Hàm keypressed:</item>
+    </list>
+    <para id="id13354977">Hàm keypressed kiểm tra xem trong quá trình làm việc có phím nào được bấm hay không?</para>
+    <para id="id5692025">Vd:</para>
+    <para id="id5126890">If keypressed then…</para>
+    <para id="id12552499">Hoặc Repeat … until keypressed;</para>
+    <list list-type="enumerated" id="id12552504">
+      <item>Hàm Readkey:</item>
+    </list>
+    <para id="id7582997">Hàm Readkey nhận diện phím được bấm, giá trị mà nó nhận về là một ký tự</para>
+    <list list-type="enumerated" id="id13352430">
+      <item>Hàm Getkey:</item>
+    </list>
+    <para id="id7019043">Hoạt động như hàm Readkey nhưng giá trị mà nó nhận là một số dương đối với các phím thông thường, nếu là các phím có mã quét mở thì giá trị Getkey nhận gồm 2 số: số đầu là số 0 và số thứ 2 là mã quét mở của phím. </para>
+    <para id="id5319004">Ví dụ: nếu bấm J thì Getkey cho số 75. Nếu nhấn &lt;- thì Getkey cho 0-75</para>
+    <para id="id12690707">Enter: 13</para>
+    <para id="id9686392">Esc:27</para>
+    <para id="id9686396">Bài tập mẫu: Thiết kế menu với 4 tùy chọn:</para>
+    <para id="id8599020">Tamgiac chunhat Tron Ketthuc</para>
+    <para id="id13346400">Để chuyển con trỏ đến một chức năng nào đó ta bấm phím &lt;- hoặc-&gt;, để chọn chức năng, ta bấm phím Enter, kết thúc công việc ấn phím End.</para>
+    <para id="id7606248">Program Menu;</para>
+    <para id="id3142428">Uses CRt;</para>
+    <para id="id3142431">label h1,h2,h3;</para>
+    <para id="id11814633">Var c1,c2,c3,c4:String[20];</para>
+    <para id="id11814636"> l1,l2,l3,l4:byte;</para>
+    <para id="id6174258"> chon:char;</para>
+    <para id="id6174263">Procedure tr; {thu tuc tinh hinh tron}</para>
+    <para id="id5319580">Var a,dt,cv:real;</para>
+    <para id="id4705179"> Begin</para>
+    <para id="id4705183">  clrscr;</para>
+    <para id="id12555538">  write('cho biet ban kinh hinh tron'); readln(a);</para>
+    <para id="id8007415">  dt:=pi*a*a; cv:=2*pi*a;</para>
+    <para id="id11867844"> writeln('dien tich hinh la:',dt:12:4);</para>
+    <para id="id11867849"> writeln('chu vi hinh la:',cv:12:4);</para>
+    <para id="id10839477"> writeln('bam enter quay ve menu');</para>
+    <para id="id12455034"> repeat until Keypressed;</para>
+    <para id="id7694034"> end;</para>
+    <para id="id5319077"> Procedure cn; {thu tuc tinh hinh chu nhat}</para>
+    <para id="id7347606"> Var a,b,p,dt,cv:real;</para>
+    <para id="id10762125">Begin</para>
+    <para id="id10762128"> clrscr;</para>
+    <para id="id11891651"> write('cho biet do dai 2 canh'); readln(a,b);</para>
+    <para id="id11792798"> dt:=a*b; cv:=(a+b)/2;</para>
+    <para id="id12788609"> writeln('dien tich hinh la:',dt:12:4);</para>
+    <para id="id12788613"> writeln('chu vi hinh la:',cv:12:4);</para>
+    <para id="id13010813"> writeln('bam enter quay ve menu');</para>
+    <para id="id13345135"> repeat until Keypressed;</para>
+    <para id="id8112185">end;</para>
+    <para id="id8112188">Procedure tg; {thu tuc tinh tam giac}</para>
+    <para id="id12766662">Var a,b,c,p,dt,cv:real;</para>
+    <para id="id12822511">Begin</para>
+    <para id="id12822514"> clrscr;</para>
+    <para id="id5664692"> write('cho biet ba canh tam giac'); readln(a,b,c);</para>
+    <para id="id6174328"> if (a+b&gt;c) and (a+c&gt;b) and (b+c&gt;a) then</para>
+    <para id="id12822001"> begin</para>
+    <para id="id12519614"> p:=(a+b+c)/2;</para>
+    <para id="id12519618"> dt:=sqrt(p*(p-a)*(p-b)*(p-c));</para>
+    <para id="id7894959"> cv:=a+b+c;</para>
+    <para id="id10807440"> writeln('dien tich hinh la:',dt:12:4);</para>
+    <para id="id5124550"> writeln('chu vi hinh la:',cv:12:4);</para>
+    <para id="id12821752"> end</para>
+    <para id="id12821756"> else</para>
+    <para id="id7476355">  write('so lieu nhap khong tao thanh tam giac');</para>
+    <para id="id8567400"> writeln('bam enter quay ve menu');</para>
+    <para id="id5261757"> repeat until Keypressed;</para>
+    <para id="id7109150">end;</para>
+    <para id="id7109154">Procedure w1; {thiet ke chuc nang thu nhat}</para>
+    <para id="id13349965">Begin</para>
+    <para id="id13063803"> Textbackground(5);</para>
+    <para id="id11792712"> textcolor(10);</para>
+    <para id="id8347211"> window(1,2,l1+1,2);write(c1);</para>
+    <para id="id8347216"> gotoxy(1,1);</para>
+    <para id="id6211557">End;</para>
+    <para id="id13122728">Procedure w2;</para>
+    <para id="id13122731"> Begin</para>
+    <para id="id13355478"> Textbackground(5);</para>
+    <para id="id11846112"> textcolor(10);</para>
+    <para id="id11183574"> window(l1+2,2,l1+l2+2,2);write(c2);</para>
+    <para id="id8726178"> gotoxy(1,1);</para>
+    <para id="id8726182">End;</para>
+    <para id="id12479715">Procedure w3;</para>
+    <para id="id8951406"> Begin</para>
+    <para id="id8951410"> Textbackground(5);</para>
+    <para id="id8384264"> textcolor(10);</para>
+    <para id="id10923789"> window(l1+l2+3,2,l1+l2+l3+3,2);write(c3);</para>
+    <para id="id12925734"> gotoxy(1,1);</para>
+    <para id="id11960820">End;</para>
+    <para id="id11960824">Procedure w4;</para>
+    <para id="id4567448"> Begin</para>
+    <para id="id13350571"> Textbackground(5);</para>
+    <para id="id13350576"> textcolor(10);</para>
+    <para id="id12997315"> window(l1+l2+l3+4,2,l1+l2+l3+l4+4,2);write(c4);</para>
+    <para id="id13359723"> gotoxy(1,1);</para>
+    <para id="id12400255">End;</para>
+    <para id="id12400258">Begin{THAN CHUONG TRINH CHINH}</para>
+    <para id="id7768248"> Clrscr;</para>
+    <para id="id12822127"> c1:='Tamgiac';l1:=length(c1);</para>
+    <para id="id13012675"> c2:='Chunhat';l2:=length(c2);</para>
+    <para id="id13012679"> c3:='Tron';l3:=length(c3);</para>
+    <para id="id12522696"> c4:='Ketthuc';l4:=length(c4);</para>
+    <para id="id10344368">CLRSCR;</para>
+    <para id="id7695971"> textcolor(red);</para>
+    <para id="id11792762"> textbackground(green);</para>
+    <para id="id12971876"> write('bam -&gt;,&lt;- di chuyen menu| Bam enter de chon| Bam End ket thuc');</para>
+    <para id="id12113297"> h1: w1;w2;w3;w4;w1;</para>
+    <para id="id7806730"> while keypressed do chon:=readkey;</para>
+    <para id="id3458297"> chon:=readkey;{tinh tam giac}</para>
+    <para id="id13122700"> if ord(chon)=13 then</para>
+    <para id="id13122704"> begin</para>
+    <para id="id13345176">  textcolor(blue);textbackground(14);</para>
+    <para id="id9295955">  window(1,4,80,25);</para>
+    <para id="id13010729">  tg;</para>
+    <para id="id12994510">  clrscr;</para>
+    <para id="id11907083">  goto h1;</para>
+    <para id="id12678220"> end</para>
+    <para id="id10763175"> else</para>
+    <para id="id13354142"> begin</para>
+    <para id="id7605467">  if ord(chon)=0 then chon:=readkey;</para>
+    <para id="id12375088">  if ord(chon)=79 then halt; {bam End ket thuc}</para>
+    <para id="id12490717">  if ord(chon)=77 then w2;</para>
+    <para id="id4468812"> end;</para>
+    <para id="id4468816"> h2: w1;w2;w3;w4;w2;</para>
+    <para id="id13371864"> while keypressed do chon:=readkey;</para>
+    <para id="id11283548"> chon:=readkey;{tinh chu nhat}</para>
+    <para id="id13218391"> if ord(chon)=13 then</para>
+    <para id="id12820816"> begin</para>
+    <para id="id12820820">  textcolor(blue);textbackground(14);</para>
+    <para id="id12865441">  window(1,4,80,25);</para>
+    <para id="id13066674">  cn;</para>
+    <para id="id12375009">  clrscr;</para>
+    <para id="id11967274">  goto h2;</para>
+    <para id="id13124528"> end</para>
+    <para id="id11276983"> else</para>
+    <para id="id7675294"> begin</para>
+    <para id="id10557106">  if ord(chon)=0 then</para>
+    <para id="id11321734">  begin</para>
+    <para id="id8886575">   chon:=readkey;</para>
+    <para id="id3845221">   if ord(chon)=79 then halt; {bam End ket thuc}</para>
+    <para id="id12656853">   if ord(chon)=77 then w3;</para>
+    <para id="id13062411">   if ord(chon)=75 then goto h1;</para>
+    <para id="id7403335">  end;</para>
+    <para id="id5255596"> end;</para>
+    <para id="id5255601"> h3: w1;w2;w3;w4;w3;</para>
+    <para id="id3064423"> while keypressed do chon:=readkey;</para>
+    <para id="id13139786"> chon:=readkey; {tinh hinh tron}</para>
+    <para id="id12373305"> if ord(chon)=13 then</para>
+    <para id="id11792871"> begin</para>
+    <para id="id11792876">  textcolor(blue);textbackground(14);</para>
+    <para id="id13267440">  window(1,4,80,25);</para>
+    <para id="id8268897">  tr;</para>
+    <para id="id8518598">  clrscr;</para>
+    <para id="id11831496">  goto h3;</para>
+    <para id="id7658289"> end</para>
+    <para id="id12821697"> else</para>
+    <para id="id12691857"> begin</para>
+    <para id="id8449000">  if ord(chon)=0 then</para>
+    <para id="id5319302">  begin</para>
+    <para id="id13469136">   chon:=readkey;</para>
+    <para id="id12915135">   if ord(chon)=79 then halt; {bam End ket thuc}</para>
+    <para id="id12531351">   if ord(chon)=77 then w4;</para>
+    <para id="id11436450">   if ord(chon)=75 then goto h2;</para>
+    <para id="id13252245">  end;</para>
+    <para id="id12519422"> end;</para>
+    <para id="id12519427"> while keypressed do chon:=readkey;</para>
+    <para id="id8668786"> chon:=readkey; {tinh hinh tron}</para>
+    <para id="id13007276"> if ord(chon)=13 then halt</para>
+    <para id="id8444431"> else</para>
+    <para id="id8444435">  if ord(chon)=0 then</para>
+    <para id="id12511008">   chon:=readkey;</para>
+    <para id="id12411851">  if ord(chon)=79 then halt; {bam End ket thuc}</para>
+    <para id="id12411856">   if ord(chon)=75 then goto h3;</para>
+    <para id="id13136252"> END.</para>
+    <para id="id12523396">Bài tập: Lập chương trình tạo menu 2 mức, mức 1 theo chiều ngang, mức 2 theo chiều dọc theo mẫu:</para>
+    <table id="id13258068" summary="">
+      <tgroup cols="2">
+        <colspec colnum="1" colname="c1"/>
+        <colspec colnum="2" colname="c2"/>
+        <tbody>
+          <row>
+            <entry>HINH PHANG</entry>
+            <entry>HINH KHONG GIAN</entry>
+          </row>
+          <row>
+            <entry>Tam giac</entry>
+            <entry>Hinh tru</entry>
+          </row>
+          <row>
+            <entry>Tron</entry>
+            <entry>Hinh cau</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <para id="id11964201">Yêu cầu: khi con trỏ ở một trong 2 chức năng HINH PHANG, HINH KHONG GIAN, nếu bấm Enter thì xuất hiện menu phía dưới, nếu bấm phím mũi tên thì sẽ chuyển con trỏ sang phải hoặc trái. Khi menu mức 2 xuất hiện sẽ có con trỏ dich chuyển lên xuống, bấm Enter thực hiện tính diện tích, chu vi (đối với hình phẳng), hoặc thể tích đối với Hình không gian).</para>
+  </content>
+</document>
